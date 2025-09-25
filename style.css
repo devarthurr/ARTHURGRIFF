@@ -156,10 +156,6 @@ body {
     color: #777;
 }
 
-/* ======================================= */
-/* ESTILOS DA GALERIA MODAL (POP-UP) */
-/* ======================================= */
-
 /* Link do item do catálogo */
 .catalog-item-link {
     text-decoration: none;
@@ -246,4 +242,75 @@ body {
     width: auto;
     border-radius: 8px;
     border: 2px solid var(--border-color);
+}
+
+
+/* ================================================== */
+/* == RESPONSIVIDADE / AJUSTES PARA CELULAR E TABLET == */
+/* ================================================== */
+
+/* Para telas menores que 768px (tablets e celulares) */
+@media (max-width: 768px) {
+    
+    /* Diminui o tamanho do logo */
+    .logo h1 {
+        font-size: 3.5em;
+        letter-spacing: 4px;
+    }
+
+    /* Diminui o padding do cabeçalho */
+    .main-header {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+
+    /* Ajusta o grid para ter menos colunas ou uma só */
+    .catalog-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 30px 4%;
+    }
+
+    /* Ajusta o nome do produto no card */
+    .product-name {
+        font-size: 1.3em;
+    }
+
+    /* Ajusta a galeria no pop-up */
+    .modal-content h2 {
+        font-size: 2em;
+    }
+    .modal-gallery img {
+        height: 40vh; /* Diminui a altura das imagens no pop-up */
+    }
+}
+
+
+/* Para telas menores que 480px (celulares pequenos) */
+@media (max-width: 480px) {
+
+    /* Esconde o texto "INSTAGRAM" e "WHATSAPP", deixando só os ícones */
+    .social-links span {
+        display: none;
+    }
+
+    /* Centraliza os ícones na barra de navegação */
+    .social-links {
+        justify-content: center;
+        gap: 40px; /* Aumenta o espaço entre os ícones */
+    }
+    
+    /* Diminui ainda mais o logo */
+    .logo h1 {
+        font-size: 2.8em;
+    }
+
+    /* Coloca os produtos em uma única coluna */
+    .catalog-container {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
 }
