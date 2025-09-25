@@ -1,0 +1,249 @@
+/* Importação de uma fonte moderna do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap');
+
+/* Variáveis de Cor para facilitar a customização */
+:root {
+    --background-color: #0c0c0c;
+    --card-color: #1a1a1a;
+    --primary-text-color: #f0f0f0;
+    --accent-color: #00e5ff;
+    --shadow-color: rgba(0, 229, 255, 0.3);
+    --border-color: #2a2a2a;
+}
+
+/* Estilos Gerais */
+body {
+    background-color: var(--background-color);
+    color: var(--primary-text-color);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Barra de Navegação Superior */
+.navbar {
+    background-color: rgba(12, 12, 12, 0.8);
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+    padding: 15px 5%;
+    position: fixed; /* Fixa a barra no topo */
+    top: 0;
+    width: 90%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.social-links {
+    display: flex;
+    justify-content: flex-end; /* Alinha os links à direita */
+    align-items: center;
+    gap: 30px;
+}
+
+.social-links a {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 700;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+/* Cabeçalho Principal */
+.main-header {
+    text-align: center;
+    padding: 150px 20px 80px 20px; /* Espaço para a navbar fixa */
+    background: linear-gradient(rgba(12, 12, 12, 0.7), rgba(12, 12, 12, 1)), url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); /* Fundo sutil */
+}
+
+.logo h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 5em;
+    letter-spacing: 8px;
+    margin: 0;
+    color: var(--primary-text-color);
+    text-shadow: 0 0 15px var(--shadow-color);
+}
+
+.logo p {
+    font-size: 1.2em;
+    margin-top: 5px;
+    color: #aaa;
+}
+
+/* Container do Catálogo */
+.catalog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Grid responsivo */
+    gap: 35px;
+    padding: 40px 5%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Estilo dos Itens do Catálogo */
+.catalog-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    height: 400px;
+}
+
+.catalog-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px var(--shadow-color);
+}
+
+.catalog-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.catalog-item:hover img {
+    transform: scale(1.1); /* Efeito de zoom na imagem */
+}
+
+/* Overlay com o nome do produto */
+.item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 40px 20px 20px 20px;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.catalog-item:hover .item-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-name {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 2px;
+}
+
+/* Rodapé */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--border-color);
+    color: #777;
+}
+
+/* ======================================= */
+/* ESTILOS DA GALERIA MODAL (POP-UP) */
+/* ======================================= */
+
+/* Link do item do catálogo */
+.catalog-item-link {
+    text-decoration: none;
+    display: block;
+}
+
+/* Modal (a janela pop-up) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Mostra o modal quando ele é "chamado" pelo link */
+.modal:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: var(--card-color);
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    position: relative;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 50px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    font-family: 'Bebas Neue', cursive;
+    color: var(--accent-color);
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+/* Botão de fechar (X) */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 3em;
+    text-decoration: none;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+/* A galeria de imagens dentro do modal */
+.modal-gallery {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Permite rolar as imagens horizontalmente */
+    padding-bottom: 15px;
+}
+
+.modal-gallery img {
+    height: 50vh;
+    max-height: 450px;
+    width: auto;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
